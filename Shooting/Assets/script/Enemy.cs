@@ -27,6 +27,10 @@ public class Enemy : MonoBehaviour {
             //Unityでの音の鳴らし方は自分で調べる。
             //弾丸と衝突した。
             Object.Destroy(gameObject);
+            //スコアを加算する。
+            GameObject scoreGo = GameObject.Find("Score");
+            Score s = scoreGo.GetComponent<Score>();
+            s.point += 10;
         }
     }
 }
