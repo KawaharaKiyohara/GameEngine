@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     public GameObject bulletOriginal;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour {
             GameObject newBullet = Object.Instantiate(bulletOriginal);
             newBullet.transform.localPosition = transform.localPosition;
             Bullet bullet = newBullet.GetComponent<Bullet>();
+            bullet.tag = "PlayerBullet";
             bullet.moveDir.y = 1.0f;
             //to 井上 弾丸の発射のSEを再生する。
             //Unityのサウンドの出し方を調べるように。
@@ -29,4 +31,17 @@ public class Player : MonoBehaviour {
         }
 
 	}
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag != "PlayerBullet" && collider.gameObject.GetComponent<Bullet>() != null)
+        {
+            //ゲームオーバー。
+            //ゲームオーバーを通知する。
+            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gm.isGameOver = true;
+            //ゲームオーバーテキストを表示する。
+            GameObject.Find("GameOver").GetComponent<Text>().enabled = true;
+            Object.Destroy(gameObject);
+        }
+    }
 }
