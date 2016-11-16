@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     public GameObject bulletOriginal;
+    public GameObject bulletShotSEOriginal;
+    public GameObject bulletShotParticle;
     float timer = 0.0f;
 	// Use this for initialization
 	void Start () {
@@ -28,6 +30,10 @@ public class Player : MonoBehaviour {
             //to 井上 弾丸の発射のSEを再生する。
             //Unityのサウンドの出し方を調べるように。
             timer = 0.0f;
+            Object.Instantiate(bulletShotSEOriginal);
+
+            GameObject newPs = Object.Instantiate(bulletShotParticle);
+            newPs.transform.localPosition = transform.localPosition;
         }
 
 	}
