@@ -24,13 +24,16 @@ public class Player : MonoBehaviour {
         {
             GameObject newBullet = Object.Instantiate(bulletOriginal);
             newBullet.transform.localPosition = transform.localPosition;
-            Bullet bullet = newBullet.GetComponent<Bullet>();
+            Bullet1 bullet = newBullet.GetComponent<Bullet1>();
             bullet.tag = "PlayerBullet";
-            bullet.moveDir.y = 1.0f;
             //to 井上 弾丸の発射のSEを再生する。
             //Unityのサウンドの出し方を調べるように。
+            //弾丸を発射する。
+            //SEサウンド
+            Instantiate(bulletShotSEOriginal);
             timer = 0.0f;
-            Object.Instantiate(bulletShotSEOriginal);
+            //サウンド↓
+            //Object.Instantiate(bulletShotSEOriginal);
 
             GameObject newPs = Object.Instantiate(bulletShotParticle);
             newPs.transform.localPosition = transform.localPosition;

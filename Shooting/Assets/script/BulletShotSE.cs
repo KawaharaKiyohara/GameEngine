@@ -10,10 +10,10 @@ public class BulletShotSE : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        AudioSource s = GetComponent<AudioSource>();
-        if (!s.isPlaying)
+        AudioSource source = GetComponent<AudioSource>();
+        if (source.isPlaying == false)
         {
             Destroy(gameObject);
         }
-	}
+    }
 }
