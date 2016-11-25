@@ -33,11 +33,6 @@ public class Player : MonoBehaviour {
             //SEサウンド
             Instantiate(bulletShotSEOriginal);
             timer = 0.0f;
-            //サウンド↓
-            //Object.Instantiate(bulletShotSEOriginal);
-
-            GameObject newPs = Object.Instantiate(bulletShotParticle);
-            newPs.transform.localPosition = transform.localPosition;
         }
 
 	}
