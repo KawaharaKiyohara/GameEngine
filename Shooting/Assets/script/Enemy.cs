@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     }
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet>() != null)
+        if (collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet1>() != null)
         {
             GameObject Ps = Object.Instantiate(EnemyExplosion);
             Ps.transform.localPosition = transform.localPosition;
