@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     public GameObject bulletOriginal;
+    public GameObject bulletShotSEOriginal;
+    public GameObject bulletShotParticle;
+    public GameObject bulletExplosion;
     float timer = 0.0f;
 	// Use this for initialization
 	void Start () {
@@ -21,12 +25,35 @@ public class Player : MonoBehaviour {
         {
             GameObject newBullet = Object.Instantiate(bulletOriginal);
             newBullet.transform.localPosition = transform.localPosition;
-            Bullet bullet = newBullet.GetComponent<Bullet>();
-            bullet.moveDir.y = 1.0f;
+            Bullet1 bullet = newBullet.GetComponent<Bullet1>();
+            bullet.tag = "PlayerBullet";
             //to 井上 弾丸の発射のSEを再生する。
             //Unityのサウンドの出し方を調べるように。
+            //弾丸を発射する。
+            //SEサウンド
+            Instantiate(bulletShotSEOriginal);
             timer = 0.0f;
+            //サウンド↓
+            //Object.Instantiate(bulletShotSEOriginal);
+
+            GameObject newPs = Object.Instantiate(bulletShotParticle);
+            newPs.transform.localPosition = transform.localPosition;
         }
 
 	}
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag != "PlayerBullet" && collider.gameObject.GetComponent<Bullet>() != null)
+        {
+            GameObject newPs = Object.Instantiate(bulletExplosion);
+            newPs.transform.localPosition = transform.localPosition;
+            //ゲームオーバー。
+            //ゲームオーバーを通知する。
+            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gm.isGameOver = true;
+            //ゲームオーバーテキストを表示する。
+            GameObject.Find("GameOver").GetComponent<Text>().enabled = true;
+            Object.Destroy(gameObject);
+        }
+    }
 }
