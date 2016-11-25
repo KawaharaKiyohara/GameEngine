@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
 {
     public Vector3 moveDir;
     public GameObject bulletOriginal;
+    public GameObject EnemyExplosion;
+    //
     float timer = 0.0f;
     // Use this for initialization
     void Start()
@@ -37,6 +39,8 @@ public class Enemy : MonoBehaviour
     {
         if (collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet>() != null)
         {
+            GameObject Ps = Object.Instantiate(EnemyExplosion);
+            Ps.transform.localPosition = transform.localPosition;
             //To 松澤
             //ここに機体が爆発す音を再生するコードを記入する。
             //Unityでの音の鳴らし方は自分で調べる。

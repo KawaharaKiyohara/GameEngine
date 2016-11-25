@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
     public GameObject bulletOriginal;
     public GameObject bulletShotSEOriginal;
     public GameObject bulletShotParticle;
-    public GameObject bulletExplosion;
+    public GameObject bulletExplosion;//(エフェクト)
     float timer = 0.0f;
 	// Use this for initialization
 	void Start () {
@@ -39,8 +39,8 @@ public class Player : MonoBehaviour {
     {
         if (collider.tag != "PlayerBullet" && collider.gameObject.GetComponent<Bullet>() != null)
         {
-            GameObject newPs = Object.Instantiate(bulletExplosion);
-            newPs.transform.localPosition = transform.localPosition;
+            GameObject newPs = Object.Instantiate(bulletExplosion);//(エフェクト)
+            newPs.transform.localPosition = transform.localPosition;//(エフェクト)
             //ゲームオーバー。
             //ゲームオーバーを通知する。
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
