@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.GetComponent<Bullet>() != null)
+        if(collider.gameObject.GetComponent<Bullet1>() != null)
         {
             //To 松澤
             //ここに機体が爆発す音を再生するコードを記入する。
