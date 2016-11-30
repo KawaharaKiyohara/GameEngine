@@ -1,19 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
     public Vector3 moveDir;
     public GameObject bulletOriginal;
+    public GameObject EnemyExplosion;
+    //
     float timer = 0.0f;
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         timer += Time.deltaTime;
-        if(timer > 0.05f)
+        if (timer > 0.05f)
         {
             GameObject newBullet = Object.Instantiate(bulletOriginal);
             newBullet.transform.localPosition = transform.localPosition;
@@ -25,19 +30,23 @@ public class Enemy : MonoBehaviour {
         Vector3 pos = transform.localPosition;
         pos += moveDir * 0.02f;
         transform.localPosition = pos;
-        if(GetComponentInChildren<Renderer>().isVisible == false)
+        if (GetComponentInChildren<Renderer>().isVisible == false)
         {
             Object.Destroy(gameObject);
         }
-	}
+    }
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet>() != null)
+        if (collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet1>() != null)
         {
+            GameObject Ps = Object.Instantiate(EnemyExplosion);
+            Ps.transform.localPosition = transform.localPosition;
             //To 松澤
             //ここに機体が爆発す音を再生するコードを記入する。
             //Unityでの音の鳴らし方は自分で調べる。
             //弾丸と衝突した。
+            Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
+            Object.Destroy(gameObject);
             Object.Destroy(gameObject);
             //スコアを加算する。
             GameObject scoreGo = GameObject.Find("Score");

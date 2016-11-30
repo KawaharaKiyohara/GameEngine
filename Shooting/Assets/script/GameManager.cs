@@ -6,13 +6,15 @@ using System.Collections;
 /// </summary>
 public class GameManager : MonoBehaviour {
     public bool isGameOver;
+    public GameObject GameBGM;
    
     // Use this for initialization
     void Start()
     {
+        Instantiate(GameBGM);
     }
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 }
