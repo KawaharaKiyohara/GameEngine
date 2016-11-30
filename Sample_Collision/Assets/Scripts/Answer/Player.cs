@@ -83,4 +83,8 @@ public class Player : MonoBehaviour {
             }
         }
     }
+    private void OnCollisionEnter(Collider other)
+    {
+        Debug.Log("hoge");
+    }
 }

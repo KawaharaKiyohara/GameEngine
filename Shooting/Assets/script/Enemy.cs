@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
             Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
             Object.Destroy(gameObject);
             Object.Destroy(gameObject);
+
             //スコアを加算する。
             GameObject scoreGo = GameObject.Find("Score");
             Score s = scoreGo.GetComponent<Score>();
