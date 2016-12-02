@@ -10,12 +10,14 @@ public class Title : MonoBehaviour {
     };
     public GameObject goCommon;
     public GameObject goCommonCanvas;
+    public GameObject TitleSE;
     Step step = Step.WaitPressAnyKey;
 
 	// Use this for initialization
 	void Start () {
         goCommon = GameObject.Find("Common");
         DontDestroyOnLoad(goCommon);
+        
     }
 	
 	// Update is called once per frame
@@ -25,8 +27,9 @@ public class Title : MonoBehaviour {
                 if (Input.GetButton("Fire1"))
                 {
                     goCommon.AddComponent<FadeIn>();
-
+                    
                     step = Step.WaitFadeOut;
+                    Instantiate(TitleSE);
                 }
                 break;
             case Step.WaitFadeOut:
