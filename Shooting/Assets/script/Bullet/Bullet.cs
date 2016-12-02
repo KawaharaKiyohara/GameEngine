@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
     public Vector3 moveDir;
-	// Use this for initialization
-	void Start () {
+    public GameObject EnemyExplosion;
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -24,7 +25,12 @@ public class Bullet : MonoBehaviour {
     /// </summary>
     private void OnDestroy()
     {
+        
+        GameObject Ps = Object.Instantiate(EnemyExplosion);
+        Ps.transform.localPosition = transform.localPosition;
         //弾丸が消えるときにこれがコールされる。
         //ここに爆発のパーティクルだけ流すようにしてください。
+        /*GameObject Ps = Object.Instantiate(EnemyExplosion);
+        Ps.transform.localPosition = transform.localPosition;*/
     }
 }
