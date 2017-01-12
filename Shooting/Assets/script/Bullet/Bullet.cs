@@ -21,13 +21,18 @@ public class Bullet : MonoBehaviour {
         Object.Destroy(gameObject);
     }
     /// <summary>
+    /// この弾丸を発射したエネミーが死んだことを通知。
+    /// </summary>
+    public void NotifyEnemyDestroy()
+    {
+        GameObject Ps = Object.Instantiate(EnemyExplosion);
+        Ps.transform.localPosition = transform.localPosition;
+    }
+    /// <summary>
     /// 弾丸が死ぬときに呼ばれるコールバック関数。
     /// </summary>
     private void OnDestroy()
     {
-        
-        GameObject Ps = Object.Instantiate(EnemyExplosion);
-        Ps.transform.localPosition = transform.localPosition;
         //弾丸が消えるときにこれがコールされる。
         //ここに爆発のパーティクルだけ流すようにしてください。
         /*GameObject Ps = Object.Instantiate(EnemyExplosion);
