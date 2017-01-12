@@ -88,8 +88,11 @@ public class Enemy : MonoBehaviour
             Object.Destroy(gameObject);
             foreach( GameObject go in goBullets)
             {
-                go.SendMessage("NotifyEnemyDestroy");
-                Destroy(go);
+                if (go)
+                {
+                    go.SendMessage("NotifyEnemyDestroy");
+                    Destroy(go);
+                }
             }
             //スコアを加算する。
             GameObject scoreGo = GameObject.Find("Score");

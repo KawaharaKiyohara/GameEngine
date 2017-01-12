@@ -14,9 +14,9 @@ public class EnemyManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
-        if (timer > 2.0f)
+        if (timer > 0.5f)
         {
-            if (numEnemy < 5)
+            if (numEnemy < 10)
             {
             
                 //敵を生成。
