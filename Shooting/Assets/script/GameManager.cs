@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// ゲームマネージャークラス。
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-
+        if (isGameOver)
+        {
+            SceneManager.LoadScene("Title");
+        }
 	}
 }

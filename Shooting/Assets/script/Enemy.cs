@@ -85,8 +85,7 @@ public class Enemy : MonoBehaviour
             //弾丸と衝突した。
             Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
             Object.Destroy(gameObject);
-            Object.Destroy(gameObject);
-            foreach( GameObject go in goBullets)
+            foreach ( GameObject go in goBullets)
             {
                 Destroy(go);
             }
