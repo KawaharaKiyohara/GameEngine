@@ -10,8 +10,8 @@ public class ExplosionSound : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        AudioSource s = GetComponent<AudioSource>();
-        if(s.isPlaying == false)
+        AudioSource source = GetComponent<AudioSource>();
+        if (source.isPlaying == false)
         {
             Destroy(gameObject);
         }

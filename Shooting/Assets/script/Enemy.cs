@@ -75,8 +75,6 @@ public class Enemy : MonoBehaviour
             //弾丸と衝突した。
             Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
             Object.Destroy(gameObject);
-            Object.Destroy(gameObject);
-          
             //スコアを加算する。
             GameObject scoreGo = GameObject.Find("Score");
             Score s = scoreGo.GetComponent<Score>();

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public bool isGameOver;
     public GameObject GameBGM;
-   
+    int Count = 0;
     // Use this for initialization
     void Start()
     {
@@ -16,5 +16,16 @@ public class GameManager : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
+        if (isGameOver)
+        {
+            if (Count == 60)
+            {
+                SceneManager.LoadScene("Title");
+            }
+            else
+            {
+                Count++;
+            }
+        }
 	}
 }
