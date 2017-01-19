@@ -8,11 +8,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public bool isGameOver;
     public GameObject GameBGM;
+    public Score score;
     int Count = 0;
     // Use this for initialization
     void Start()
     {
         Instantiate(GameBGM);
+        score = GameObject.Find("Score").GetComponent<Score>();
     }
 	// Update is called once per frame
 	void Update () {
@@ -26,6 +28,12 @@ public class GameManager : MonoBehaviour {
             {
                 Count++;
             }
+        }
+        //
+        if(score.point > 1000)
+        {
+            //スコアのポイントが1000より大きくなったら。
+            //ここでボスのブレハブをロードする。
         }
 	}
 }
