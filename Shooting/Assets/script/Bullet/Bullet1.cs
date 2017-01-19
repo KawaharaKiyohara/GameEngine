@@ -3,22 +3,28 @@ using System.Collections;
 
 public class Bullet1 : MonoBehaviour {
     public float moveSpeed = 0.1f;
-
+    public Vector3 moveDir { get; set; }
+    Camera mainCamera;
     // Use this for initialization
     void Start () {
-	
-	}
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>(); ;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         Vector3 pos = transform.localPosition;
-        pos.y += moveSpeed;
+        pos += moveDir * moveSpeed;
         transform.localPosition = pos;
-        MeshRenderer mr = GetComponent<MeshRenderer>();
-        if (mr.isVisible == false)
+        pos = mainCamera.WorldToScreenPoint(pos);
+        if ((int)pos.x < mainCamera.pixelRect.xMin
+            || (int)pos.x > mainCamera.pixelRect.xMax
+            || (int)pos.y < mainCamera.pixelRect.yMin
+            || (int)pos.y > mainCamera.pixelRect.yMax
+        )
         {
-            //画面外に行った。
+            //画面外。
             Destroy(gameObject);
         }
+     
     }
 }

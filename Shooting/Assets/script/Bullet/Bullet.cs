@@ -26,23 +26,13 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-   
-    /// <summary>
-    /// この弾丸を発射したエネミーが死んだことを通知。
-    /// </summary>
-    public void NotifyEnemyDestroy()
+    void OnTriggerEnter(Collider collider)
     {
-        GameObject Ps = Object.Instantiate(EnemyExplosion);
-        Ps.transform.localPosition = transform.localPosition;
-    }
-    /// <summary>
-    /// 弾丸が死ぬときに呼ばれるコールバック関数。
-    /// </summary>
-    private void OnDestroy()
-    {
-        //弾丸が消えるときにこれがコールされる。
-        //ここに爆発のパーティクルだけ流すようにしてください。
-        /*GameObject Ps = Object.Instantiate(EnemyExplosion);
-        Ps.transform.localPosition = transform.localPosition;*/
-    }
+        if (collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet1>() != null)
+        {
+            Destroy(gameObject);
+            GameObject Ps = Object.Instantiate(EnemyExplosion);
+            Ps.transform.localPosition = transform.localPosition;
+        }
+    }   
 }
