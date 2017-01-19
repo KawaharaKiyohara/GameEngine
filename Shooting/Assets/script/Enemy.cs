@@ -34,16 +34,6 @@ public class Enemy : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 1.0f)
         {
-           /* int bulletType = Random.Range(0, NUM_BULLET_TYPE);
-            if (bulletType == 0)
-            {
-                //真っすぐに飛ぶ弾丸を生成。
-                GameObject newBullet = Object.Instantiate(bulletOriginal);
-                newBullet.transform.localPosition = transform.localPosition;
-                Bullet bullet = newBullet.GetComponent<Bullet>();
-                bullet.tag = "EnemyBullet";
-                bullet.moveDir.y = -1.0f;
-            }else if(bulletType == 1)*/
             {
                 //同心円状に飛ぶ弾丸を生成。
                 float angle = 24.0f;
@@ -85,11 +75,6 @@ public class Enemy : MonoBehaviour
             //弾丸と衝突した。
             Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
             Object.Destroy(gameObject);
-            foreach ( GameObject go in goBullets)
-            {
-                go.SendMessage("NotifyEnemyDestroy");
-                Destroy(go);
-            }
             //スコアを加算する。
             GameObject scoreGo = GameObject.Find("Score");
             Score s = scoreGo.GetComponent<Score>();
