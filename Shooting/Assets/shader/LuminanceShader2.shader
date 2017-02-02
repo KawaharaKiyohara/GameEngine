@@ -53,8 +53,6 @@
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
 				col.rgb *= _Intensity;
-				// apply fog
-				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
 			}
 			ENDCG
