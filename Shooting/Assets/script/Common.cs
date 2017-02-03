@@ -17,7 +17,7 @@ public class Common : MonoBehaviour {
         //フェードアウトコンポーネントを張り付ける。
         FadeOut fadeOut = gameObject.GetComponent<FadeOut>();
         if (fadeOut == null)
-        {https://docs.unity3d.com/ja/current/ScriptReference/Microphone.html
+        {
             gameObject.AddComponent<FadeOut>();
         }
     }
