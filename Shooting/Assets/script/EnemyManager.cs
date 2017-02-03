@@ -6,27 +6,32 @@ public class EnemyManager : MonoBehaviour {
     public static EnemyManager instance;
     public GameObject enemyOriginal;
     public int numEnemy { get; set; }
-	// Use this for initialization
-	void Start () {
+    GameManager gameManager;
+    // Use this for initialization
+    void Start () {
         instance = this;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        timer += Time.deltaTime;
-        if (timer > 2.0f)
+        if (gameManager.gameState == GameManager.GameState.Normal)
         {
-            if (numEnemy < 5)
+            timer += Time.deltaTime;
+            if (timer > 0.15f)
             {
-            
-                //敵を生成。
-                GameObject newEnemy = GameObject.Instantiate(enemyOriginal);
-                Enemy enemy = newEnemy.GetComponent<Enemy>();
-                enemy.moveDir.y = -1.0f;
-                numEnemy++;
+                if (numEnemy < 15)
+                {
+
+                    //敵を生成。
+                    GameObject newEnemy = GameObject.Instantiate(enemyOriginal);
+                    Enemy enemy = newEnemy.GetComponent<Enemy>();
+                    enemy.moveDir.y = -1.0f;
+                    numEnemy++;
+                    timer = 0.0f;
+                }
                 timer = 0.0f;
             }
-            timer = 0.0f;
         }
 	}
 }

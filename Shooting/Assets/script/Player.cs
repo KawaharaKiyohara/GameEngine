@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
     public GameObject bulletShotSEOriginal;
     public GameObject bulletShotParticle;
     public GameObject bulletExplosion;//(エフェクト)
+    Vector3 bulletShotDampVel = Vector3.zero;
+    Vector3 bulletShotDir = Vector3.up;
     float timer = 0.0f;
 	// Use this for initialization
 	void Start () {
@@ -20,12 +22,13 @@ public class Player : MonoBehaviour {
         pos.y += Input.GetAxis("Vertical") * moveSpeed;
         transform.localPosition = pos;
         timer += Time.deltaTime;
-        if (Input.GetButton("Fire1") && timer > 0.05f)
+        if (Input.GetButton("Fire1") && timer > 0.08f)
         {
             GameObject newBullet = Object.Instantiate(bulletOriginal);
             newBullet.transform.localPosition = transform.localPosition;
             Bullet1 bullet = newBullet.GetComponent<Bullet1>();
             bullet.tag = "PlayerBullet";
+            bullet.moveDir = bulletShotDir;
             //to 井上 弾丸の発射のSEを再生する。
             //Unityのサウンドの出し方を調べるように。
             //弾丸を発射する。
@@ -33,6 +36,9 @@ public class Player : MonoBehaviour {
             Instantiate(bulletShotSEOriginal);
             timer = 0.0f;
         }
+        float rotAngle = Input.GetAxis("HorizontalR") * -1.0f;
+        Quaternion qRot = Quaternion.AngleAxis(rotAngle, Vector3.forward);
+        bulletShotDir = qRot * bulletShotDir;
 
 	}
     void OnTriggerEnter(Collider collider)
@@ -41,12 +47,13 @@ public class Player : MonoBehaviour {
         {
             GameObject newPs = Object.Instantiate(bulletExplosion);//(エフェクト)
             newPs.transform.localPosition = transform.localPosition;//(エフェクト)
+            Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
             //ゲームオーバー。
             //ゲームオーバーを通知する。
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
             gm.isGameOver = true;
             //ゲームオーバーテキストを表示する。
-            GameObject.Find("GameOver").GetComponent<Text>().enabled = true;
+            GameObject.Find("GameOver").GetComponent<Image>().enabled = true;
             Object.Destroy(gameObject);
         }
     }

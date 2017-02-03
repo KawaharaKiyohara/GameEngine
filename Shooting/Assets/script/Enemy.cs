@@ -34,16 +34,6 @@ public class Enemy : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 1.0f)
         {
-           /* int bulletType = Random.Range(0, NUM_BULLET_TYPE);
-            if (bulletType == 0)
-            {
-                //真っすぐに飛ぶ弾丸を生成。
-                GameObject newBullet = Object.Instantiate(bulletOriginal);
-                newBullet.transform.localPosition = transform.localPosition;
-                Bullet bullet = newBullet.GetComponent<Bullet>();
-                bullet.tag = "EnemyBullet";
-                bullet.moveDir.y = -1.0f;
-            }else if(bulletType == 1)*/
             {
                 //同心円状に飛ぶ弾丸を生成。
                 float angle = 24.0f;
@@ -77,24 +67,26 @@ public class Enemy : MonoBehaviour
     {
         if (collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet1>() != null)
         {
-            GameObject Ps = Object.Instantiate(EnemyExplosion);
-            Ps.transform.localPosition = transform.localPosition;
-            //To 松澤
-            //ここに機体が爆発す音を再生するコードを記入する。
-            //Unityでの音の鳴らし方は自分で調べる。
-            //弾丸と衝突した。
-            Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
-            Object.Destroy(gameObject);
-            Object.Destroy(gameObject);
-            foreach( GameObject go in goBullets)
-            {
-                Destroy(go);
-            }
+            RequestDead();
             //スコアを加算する。
             GameObject scoreGo = GameObject.Find("Score");
             Score s = scoreGo.GetComponent<Score>();
             s.point += 10;
-            EnemyManager.instance.numEnemy--;
         }
+    }
+    /// <summary>
+    /// 死亡リクエスト
+    /// </summary>
+    public void RequestDead()
+    {
+        GameObject Ps = Object.Instantiate(EnemyExplosion);
+        Ps.transform.localPosition = transform.localPosition;
+        //To 松澤
+        //ここに機体が爆発す音を再生するコードを記入する。
+        //Unityでの音の鳴らし方は自分で調べる。
+        //弾丸と衝突した。
+        Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
+        Object.Destroy(gameObject);
+        EnemyManager.instance.numEnemy--;
     }
 }
