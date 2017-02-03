@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 /// <summary>
 /// ゲームマネージャークラス。
@@ -32,8 +33,10 @@ public class GameManager : MonoBehaviour {
         //
         if(score.point > 1000)
         {
-            //スコアのポイントが1000より大きくなったら。
+            //スコアのポイントが1000より大きくなったら
+
             //ここでボスのブレハブをロードする。
+            GameObject new
         }
 	}
 }

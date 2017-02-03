@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
             GameObject Ps = Object.Instantiate(EnemyExplosion);
             Ps.transform.localPosition = transform.localPosition;
             //To 松澤
-            //ここに機体が爆発す音を再生するコードを記入する。
+            //ここに機体が爆発する音を再生するコードを記入する。
             //Unityでの音の鳴らし方は自分で調べる。
             //弾丸と衝突した。
             Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
