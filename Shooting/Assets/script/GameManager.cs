@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         if (isGameOver)
         {
-            if (Count == 60)
+            if (Count == 280)
             {
                 SceneManager.LoadScene("Title");
             }
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour {
         {
             case GameState.Normal:
                 //
-                if (score.point > 20)
+                if (score.point > 3000)
                 {
                     //すべての敵を爆発させる。
                     Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();

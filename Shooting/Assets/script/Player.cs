@@ -47,12 +47,13 @@ public class Player : MonoBehaviour {
         {
             GameObject newPs = Object.Instantiate(bulletExplosion);//(エフェクト)
             newPs.transform.localPosition = transform.localPosition;//(エフェクト)
+            Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
             //ゲームオーバー。
             //ゲームオーバーを通知する。
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
             gm.isGameOver = true;
             //ゲームオーバーテキストを表示する。
-            GameObject.Find("GameOver").GetComponent<Text>().enabled = true;
+            GameObject.Find("GameOver").GetComponent<Image>().enabled = true;
             Object.Destroy(gameObject);
         }
     }
