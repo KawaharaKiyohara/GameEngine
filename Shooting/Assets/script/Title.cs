@@ -11,6 +11,7 @@ public class Title : MonoBehaviour {
     public GameObject goCommon;
     public GameObject goCommonCanvas;
     public GameObject Titlemusic;
+    public GameObject TitleSE;
     Step step = Step.WaitPressAnyKey;
 
 	// Use this for initialization
@@ -28,6 +29,7 @@ public class Title : MonoBehaviour {
                 {
                     goCommon.AddComponent<FadeIn>();
                     step = Step.WaitFadeOut;
+                    Instantiate(bulletShotSEOriginal);
                 }
                 break;
             case Step.WaitFadeOut:
