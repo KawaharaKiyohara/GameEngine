@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour {
     public Vector3 moveDir;
     public GameObject EnemyExplosion;
     Camera mainCamera;
+    float explosionTimer = 0;
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>(); ;
@@ -30,9 +31,30 @@ public class Bullet : MonoBehaviour {
     {
         if (collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet1>() != null)
         {
-            Destroy(gameObject);
-            GameObject Ps = Object.Instantiate(EnemyExplosion);
-            Ps.transform.localPosition = transform.localPosition;
+            RequestExplosion(0.0f);
         }
-    }   
+    }
+    IEnumerator Explosion()
+    {
+        while (true)
+        {
+            explosionTimer -= Time.deltaTime;
+            if(explosionTimer < 0.0f)
+            {
+                break;
+            }
+            yield return null;
+        }
+        Destroy(gameObject);
+        GameObject Ps = Object.Instantiate(EnemyExplosion);
+        Ps.transform.localPosition = transform.localPosition;
+    }
+    /// <summary>
+    /// 破壊リクエスト。
+    /// </summary>
+    public void RequestExplosion(float explosionTimer)
+    {
+        this.explosionTimer = explosionTimer;
+        StartCoroutine(Explosion());
+    }
 }
