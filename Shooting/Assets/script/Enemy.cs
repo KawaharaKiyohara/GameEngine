@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
         //ここに機体が爆発す音を再生するコードを記入する。
         //Unityでの音の鳴らし方は自分で調べる。
         //弾丸と衝突した。
-        Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
+        SoundManager.instance.RequestPlayExplosionSound();
         Object.Destroy(gameObject);
         EnemyManager.instance.numEnemy--;
     }

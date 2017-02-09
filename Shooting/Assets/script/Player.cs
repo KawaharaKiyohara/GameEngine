@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
             //Unityのサウンドの出し方を調べるように。
             //弾丸を発射する。
             //SEサウンド
-            Instantiate(bulletShotSEOriginal);
+            SoundManager.instance.RequestPlayBulletSE();
             timer = 0.0f;
         }
         float rotAngle = Input.GetAxis("HorizontalR") * -1.0f;
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour {
         {
             GameObject newPs = Object.Instantiate(bulletExplosion);//(エフェクト)
             newPs.transform.localPosition = transform.localPosition;//(エフェクト)
-            Object.Instantiate(Resources.Load("prefab/ExprosionSound"));
+            SoundManager.instance.RequestPlayExplosionSound();
             //ゲームオーバー。
             //ゲームオーバーを通知する。
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -57,4 +57,5 @@ public class Player : MonoBehaviour {
             Object.Destroy(gameObject);
         }
     }
+    
 }
