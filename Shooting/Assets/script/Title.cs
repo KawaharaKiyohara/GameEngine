@@ -29,7 +29,6 @@ public class Title : MonoBehaviour {
                 {
                     goCommon.AddComponent<FadeIn>();
                     step = Step.WaitFadeOut;
-                    Instantiate(bulletShotSEOriginal);
                 }
                 break;
             case Step.WaitFadeOut:
