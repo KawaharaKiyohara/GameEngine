@@ -39,15 +39,16 @@ public class Enemy : MonoBehaviour
                 float angle = 24.0f;
                 //いくつ生成する。
                 int numBullet = (int)( 360.0f / 15.0f ) ;
-                for(int i = 0; i < numBullet; i++)
+               
+                for (int i = 0; i < numBullet; i++)
                 {
                     GameObject newBullet = Object.Instantiate(bulletOriginal);
                     goBullets.Add(newBullet);
                     newBullet.transform.localPosition = transform.localPosition;
                     Bullet bullet = newBullet.GetComponent<Bullet>();
                     bullet.tag = "EnemyBullet";
-                    bullet.moveDir.x = Mathf.Cos(Mathf.Deg2Rad * (angle * i));
-                    bullet.moveDir.y = Mathf.Sin(Mathf.Deg2Rad * (angle * i));
+                    bullet.moveDir.x = Mathf.Cos(Mathf.Deg2Rad * (angle * i ));
+                    bullet.moveDir.y = Mathf.Sin(Mathf.Deg2Rad * (angle * i ));
 
                 }
 

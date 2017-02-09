@@ -12,6 +12,7 @@
 		LOD 100
 		Blend One One
 		ZWrite Off
+		ZTest Off
 		Pass
 		{
 			CGPROGRAM

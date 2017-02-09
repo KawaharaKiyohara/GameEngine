@@ -9,6 +9,7 @@ public class BossEnter : MonoBehaviour {
     const float bosEnterEndPosY = 6.7f; //ボスの登場演出が終了するY座標。
     Camera mainCamera;
     float cameraYureRate = 0.0f;        //sinカーブでカメラを揺らすための種。
+    
     // Use this for initialization
     void Start () {
         //ボスの初期位置は画面外。
@@ -38,4 +39,5 @@ public class BossEnter : MonoBehaviour {
             
         }
 	}
+    
 }
