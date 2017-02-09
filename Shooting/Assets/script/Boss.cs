@@ -8,6 +8,7 @@ public class Boss : MonoBehaviour {
     BossDamageEffect bossDamageEffect;
     public GameObject bulletOriginal;
     public GameObject EnemyExplosion;
+    GameObject bossClash;
     enum State
     {
         Enter,      //入場。
@@ -17,7 +18,7 @@ public class Boss : MonoBehaviour {
     State state = State.Enter;
     float timer = 0.0f;
     Vector3 moveDir = new Vector3(1.0f, 0.0f, 0.0f);
-    public int HP = 500;
+    int HP = 250;
     // Use this for initialization
     void Start () {
         bossEnter = gameObject.AddComponent<BossEnter>();
@@ -63,6 +64,12 @@ public class Boss : MonoBehaviour {
         Vector3 scale = transform.localScale;
         scale *= 0.997f;
         transform.localScale = scale;
+        if(!bossClash.GetComponent<AudioSource>().isPlaying)
+        {
+            //ゲームマネージャに死亡を通知。
+            GameManager.instance.NotifyClear();
+            Destroy(gameObject);
+        }
     }
 
     private void UpdateStateBattle()
@@ -109,6 +116,7 @@ public class Boss : MonoBehaviour {
     {
         if (HP != 0 && collider.tag != "EnemyBullet" && collider.gameObject.GetComponent<Bullet1>() != null)
         {
+            SoundManager.instance.RequestPlayExplosionSound();
             HP -= 1;
             if (!bossDamageEffect)
             {
@@ -124,6 +132,9 @@ public class Boss : MonoBehaviour {
                 angularVelocity.y = 5.0f;
                 rb.angularVelocity = angularVelocity;
                 rb.AddRelativeForce(100.0f, 250.0f, 0.0f);
+                GameObject bossBGM = GameObject.Find("BossBGM");
+                bossBGM.AddComponent<SoundFadeOut>();
+                bossClash = Instantiate(Resources.Load("prefab/BossClash")) as GameObject;
                 state = State.Dead;
             }
         }

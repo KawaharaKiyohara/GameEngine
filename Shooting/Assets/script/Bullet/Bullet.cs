@@ -48,6 +48,7 @@ public class Bullet : MonoBehaviour {
         Destroy(gameObject);
         GameObject Ps = Object.Instantiate(EnemyExplosion);
         Ps.transform.localPosition = transform.localPosition;
+        SoundManager.instance.RequestPlayExplosionSound();
     }
     /// <summary>
     /// 破壊リクエスト。

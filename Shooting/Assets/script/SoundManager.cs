@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour {
     List<GameObject> goExplosionSoundList = new List<GameObject>();
     List<GameObject> goBulletShotSEList = new List<GameObject>();
     float playBulletShotInterval = 0.0f;
+    float playExplosionInterval = 0.0f;
     // Use this for initialization
     void Start () {
         instance = this;
@@ -28,15 +29,17 @@ public class SoundManager : MonoBehaviour {
         goExplosionSoundList.RemoveAll(removeFunc);
         goBulletShotSEList.RemoveAll(removeFunc);
         playBulletShotInterval -= Time.deltaTime;
+        playExplosionInterval -= Time.deltaTime;
 
     }
     public void RequestPlayExplosionSound()
     {
-        if (goExplosionSoundList.Count < 2)
+        if (playExplosionInterval < 0.0f && goExplosionSoundList.Count < 4)
         {
             //同時発声数を制限する。
             GameObject go = Instantiate(Resources.Load("prefab/ExprosionSound")) as GameObject;
             goExplosionSoundList.Add(go);
+            playExplosionInterval = 0.05f;
         }
     }
     public void RequestPlayBulletSE()
