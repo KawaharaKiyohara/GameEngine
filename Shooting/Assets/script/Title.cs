@@ -25,7 +25,7 @@ public class Title : MonoBehaviour {
     void Update () {
         switch (step) {
             case Step.WaitPressAnyKey:
-                if (Input.GetButton("Fire1"))
+                if (Input.GetButton("Submit"))
                 {
                     goCommon.AddComponent<FadeIn>();
                     step = Step.WaitFadeOut;

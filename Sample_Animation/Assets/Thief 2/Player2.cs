@@ -46,4 +46,10 @@ public class Player2 : MonoBehaviour {
             SetTrigger("isAttack");
         }
     }
+    void OnPlayAttackSEEvent()
+    {
+        Instantiate(Resources.Load("PlayerAttackSE"));
+        BoxCollider collider = gameObject.AddComponent<BoxCollider>();
+    }
+    
 }
