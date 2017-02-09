@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour {
         {
             case GameState.Normal:
                 //
-                if (score.point > 100)
+                if (score.point > 3000)
                 {
                     //すべての敵を爆発させる。
                     Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
